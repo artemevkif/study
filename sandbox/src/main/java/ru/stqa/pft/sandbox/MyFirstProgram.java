@@ -1,3 +1,5 @@
+package ru.stqa.pft.sandbox;
+
 public class MyFirstProgram {
 	public static void main(String[] args) {
 		System.out.println("test1234567890-=!@#$%^&*                     _    абв    ?");
