@@ -9,5 +9,20 @@ public class MyFirstProgram {
     System.out.println("  /--------------/");
     System.out.println(" /      ня      /");
     System.out.println("/--------------/");
+
+    System.out.println(2+2);
+    System.out.println(2/2);
+    System.out.println(2*2);
+    System.out.println(2-2);
+
+    System.out.println(2/3);
+
+    System.out.println(2.0/3);
+
+    System.out.println("2.0"+"3");
+    System.out.println(2.0+"-3");
+    System.out.println((2.0+2)*3);
+    System.out.println((2.0+2)+" = два плюс два");
+
   }
 }
