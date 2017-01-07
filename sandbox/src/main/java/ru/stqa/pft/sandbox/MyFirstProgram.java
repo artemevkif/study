@@ -2,30 +2,28 @@ package ru.stqa.pft.sandbox;
 
 public class MyFirstProgram {
   public static void main(String[] args) {
-    double l = 8;
-    double s = l * l;
-    String somebody = "world";
+    double l = 32;
+    double a = 4;
+    double b = 6;
 
-    System.out.println("Площадь " + l + " = " + s);
+    hello("324");
+    hello("Aleksey");
+    hello("world");
+
+    System.out.println("Площадь квадрата со стороной " + l + " = " + area(l));
+    System.out.println("Площадь прямоугольника со сторонами " + a + " и " + b + " = " + area(a,b));
+
+  }
+
+  public static void hello(String somebody) {
     System.out.println("Hello " + somebody + "!");
+  }
 
-    System.out.println("test1234567890-=!@#$%^&*                     _    абв    ?");
-    System.out.println("2string");
-    System.out.println("");
-    System.out.println("4");
-    System.out.println("  /--------------/");
-    System.out.println(" /      ня      /");
-    System.out.println("/--------------/");
-    System.out.println(2+2);
-    System.out.println(2/2);
-    System.out.println(2*2);
-    System.out.println(2-2);
-    System.out.println(2/3);
-    System.out.println(2.0/3);
-    System.out.println("2.0"+"3");
-    System.out.println(2.0+"-3");
-    System.out.println((2.0+2)*3);
-    System.out.println((2.0+2)+" = два плюс два");
+  public static double area (double len){
+    return len * len;
+      }
 
+  public static double area (double a, double b){
+    return a * b;
   }
 }
