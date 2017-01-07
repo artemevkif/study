@@ -13,8 +13,12 @@ public class Point {
 
   public static void main(String[] args) {
     Point p1 = new Point();
+    p1.a = 1;
+    p1.b = 1;
 
     Point p2 = new Point();
+    p2.a = 8;
+    p2.b = 8;
 
     System.out.println("Расстояние: " + distance(p1, p2));
   }
