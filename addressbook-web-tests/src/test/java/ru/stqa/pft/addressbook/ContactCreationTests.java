@@ -31,7 +31,7 @@ public class ContactCreationTests {
   @Test
   public void testContactCreation() {
     goToNewContact();
-    fillContactForm("testname", "testmname", "testlname", "testnik", "C:\\1.png", "testtitle", "testcompany", "testadress", "testhome", "testmobile", "testwork", "testfax", "testmail", "testmail2", "testmail3", "testhompage");
+    fillContactForm(new GroupContactData("testname", "testmname", "testlname", "testnik", "C:\\1.png", "testtitle", "testcompany", "testadress", "testhome", "testmobile", "testwork", "testfax", "testmail", "testmail2", "testmail3", "testhompage"));
     supmitContactCreation();
     returnToMainPage();
   }
@@ -44,38 +44,38 @@ public class ContactCreationTests {
     wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
   }
 
-  private void fillContactForm(String firstname, String middlename, String lastname, String nickname, String photo, String title, String company, String address, String home, String mobile, String work, String fax, String email, String email2, String email3, String homepage) {
+  private void fillContactForm(GroupContactData groupContactData) {
     wd.findElement(By.name("firstname")).click();
-    wd.findElement(By.name("firstname")).sendKeys(firstname);
+    wd.findElement(By.name("firstname")).sendKeys(groupContactData.getFirstname());
     wd.findElement(By.name("middlename")).click();
-    wd.findElement(By.name("middlename")).sendKeys(middlename);
+    wd.findElement(By.name("middlename")).sendKeys(groupContactData.getMiddlename());
     wd.findElement(By.name("lastname")).click();
-    wd.findElement(By.name("lastname")).sendKeys(lastname);
+    wd.findElement(By.name("lastname")).sendKeys(groupContactData.getLastname());
     wd.findElement(By.name("nickname")).click();
-    wd.findElement(By.name("nickname")).sendKeys(nickname);
-    wd.findElement(By.name("photo")).sendKeys(photo);
+    wd.findElement(By.name("nickname")).sendKeys(groupContactData.getNickname());
+    wd.findElement(By.name("photo")).sendKeys(groupContactData.getPhoto());
     wd.findElement(By.name("title")).click();
-    wd.findElement(By.name("title")).sendKeys(title);
+    wd.findElement(By.name("title")).sendKeys(groupContactData.getTitle());
     wd.findElement(By.name("company")).click();
-    wd.findElement(By.name("company")).sendKeys(company);
+    wd.findElement(By.name("company")).sendKeys(groupContactData.getCompany());
     wd.findElement(By.name("address")).click();
-    wd.findElement(By.name("address")).sendKeys(address);
+    wd.findElement(By.name("address")).sendKeys(groupContactData.getAddress());
     wd.findElement(By.name("home")).click();
-    wd.findElement(By.name("home")).sendKeys(home);
+    wd.findElement(By.name("home")).sendKeys(groupContactData.getHome());
     wd.findElement(By.name("mobile")).click();
-    wd.findElement(By.name("mobile")).sendKeys(mobile);
+    wd.findElement(By.name("mobile")).sendKeys(groupContactData.getMobile());
     wd.findElement(By.name("work")).click();
-    wd.findElement(By.name("work")).sendKeys(work);
+    wd.findElement(By.name("work")).sendKeys(groupContactData.getWork());
     wd.findElement(By.name("fax")).click();
-    wd.findElement(By.name("fax")).sendKeys(fax);
+    wd.findElement(By.name("fax")).sendKeys(groupContactData.getFax());
     wd.findElement(By.name("email")).click();
-    wd.findElement(By.name("email")).sendKeys(email);
+    wd.findElement(By.name("email")).sendKeys(groupContactData.getEmail());
     wd.findElement(By.name("email2")).click();
-    wd.findElement(By.name("email2")).sendKeys(email2);
+    wd.findElement(By.name("email2")).sendKeys(groupContactData.getEmail2());
     wd.findElement(By.name("email3")).click();
-    wd.findElement(By.name("email3")).sendKeys(email3);
+    wd.findElement(By.name("email3")).sendKeys(groupContactData.getEmail3());
     wd.findElement(By.name("homepage")).click();
-    wd.findElement(By.name("homepage")).sendKeys(homepage);
+    wd.findElement(By.name("homepage")).sendKeys(groupContactData.getHomepage());
   }
 
   private void goToNewContact() {
