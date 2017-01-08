@@ -1,5 +1,6 @@
 package ru.stqa.pft.sandbox;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 /**
@@ -11,7 +12,7 @@ public class PointTest_1 {
     Point p1 = new Point(2,0);
     Point p2 = new Point(799,0);
 
-    assert p1.dist(p2) ==  797;
+    Assert.assertEquals(p1.dist(p2),797.0);
   }
 
 }
