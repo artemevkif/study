@@ -48,4 +48,13 @@ public class ContactHelper extends BaseHelper {
   public void alertaccept() {
     wd.switchTo().alert().accept();
   }
+
+  public void supmitContactModification() {
+    click(By.xpath("//div[@id='content']/form[1]/input[22]"));
+  }
+
+  public void initContactModification() {
+    click(By.xpath("//table[@id='maintable']/tbody/tr[4]/td[8]/a/img"));
+
+  }
 }
