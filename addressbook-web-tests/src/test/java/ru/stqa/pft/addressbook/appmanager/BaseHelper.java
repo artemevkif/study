@@ -7,10 +7,10 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 /**
  * Created by xxartema on 09.01.2017.
  */
-public class HelperBase {
+public class BaseHelper {
   protected FirefoxDriver wd;
 
-  public HelperBase(FirefoxDriver wd) {
+  public BaseHelper(FirefoxDriver wd) {
     this.wd = wd;
   }
 
@@ -21,6 +21,10 @@ public class HelperBase {
   protected void type(By locator, String text) {
     click(locator);
     wd.findElement(locator).clear();
+    wd.findElement(locator).sendKeys(text);
+  }
+
+  protected void typeforphoto(By locator, String text) {
     wd.findElement(locator).sendKeys(text);
   }
 
