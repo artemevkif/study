@@ -5,7 +5,7 @@ public class GroupContactData {
   private final String middlename;
   private final String lastname;
   private final String nickname;
-//  private final String photo;
+  private final String photo;
   private final String title;
   private final String company;
   private final String address;
@@ -23,7 +23,7 @@ public class GroupContactData {
     this.middlename = middlename;
     this.lastname = lastname;
     this.nickname = nickname;
-    //this.photo = photo;
+    this.photo = photo;
     this.title = title;
     this.company = company;
     this.address = address;
@@ -53,9 +53,9 @@ public class GroupContactData {
     return nickname;
   }
 
-//  public String getPhoto() {
-//    return photo;
-//  }
+  public String getPhoto() {
+    return photo;
+  }
 
   public String getTitle() {
     return title;
