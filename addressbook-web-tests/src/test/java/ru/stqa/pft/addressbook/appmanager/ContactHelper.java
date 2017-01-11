@@ -1,8 +1,11 @@
 package ru.stqa.pft.addressbook.appmanager;
 
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import ru.stqa.pft.addressbook.model.GroupContactData;
+import org.testng.Assert;
+import ru.stqa.pft.addressbook.model.ContactData;
 
 /**
  * Created by xxartema on 09.01.2017.
@@ -26,23 +29,29 @@ public class ContactHelper extends BaseHelper {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
   }
 
-  public void fillContactForm(GroupContactData groupContactData) {
-    type(By.name("firstname"), groupContactData.getFirstname());
-    type(By.name("middlename"), groupContactData.getMiddlename());
-    type(By.name("lastname"), groupContactData.getLastname());
-    type(By.name("nickname"), groupContactData.getNickname());
+  public void fillContactForm(ContactData contactData, boolean createon) {
+    type(By.name("firstname"), contactData.getFirstname());
+    type(By.name("middlename"), contactData.getMiddlename());
+    type(By.name("lastname"), contactData.getLastname());
+    type(By.name("nickname"), contactData.getNickname());
 //    typeforphoto(By.name("photo"), groupContactData.getPhoto());
-    type(By.name("title"), groupContactData.getTitle());
-    type(By.name("company"), groupContactData.getCompany());
-    type(By.name("address"), groupContactData.getAddress());
-    type(By.name("home"), groupContactData.getHome());
-    type(By.name("mobile"), groupContactData.getMobile());
-    type(By.name("work"), groupContactData.getWork());
-    type(By.name("fax"), groupContactData.getFax());
-    type(By.name("email"), groupContactData.getEmail());
-    type(By.name("email2"), groupContactData.getEmail2());
-    type(By.name("email3"), groupContactData.getEmail3());
-    type(By.name("homepage"), groupContactData.getHomepage());
+    type(By.name("title"), contactData.getTitle());
+    type(By.name("company"), contactData.getCompany());
+    type(By.name("address"), contactData.getAddress());
+    type(By.name("home"), contactData.getHome());
+    type(By.name("mobile"), contactData.getMobile());
+    type(By.name("work"), contactData.getWork());
+    type(By.name("fax"), contactData.getFax());
+    type(By.name("email"), contactData.getEmail());
+    type(By.name("email2"), contactData.getEmail2());
+    type(By.name("email3"), contactData.getEmail3());
+    type(By.name("homepage"), contactData.getHomepage());
+
+    if (createon) {
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+    } else {
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
+    }
   }
 
   public void alertaccept() {
