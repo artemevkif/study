@@ -20,9 +20,15 @@ public class BaseHelper {
 
   protected void type(By locator, String text) {
     click(locator);
+
+    //Проверка введеного текста, атрибут value = значение введенное в поле. Знак ! - отрицание следующего за ним утверждения, т.е. если текст не совпадает с атрибутом...
     if (text != null) {
-      wd.findElement(locator).clear();
-      wd.findElement(locator).sendKeys(text);
+      String existingText = wd.findElement(locator).getAttribute("value");
+      if (! text.equals(existingText)) {
+
+        wd.findElement(locator).clear();
+        wd.findElement(locator).sendKeys(text);
+      }
     }
   }
 
