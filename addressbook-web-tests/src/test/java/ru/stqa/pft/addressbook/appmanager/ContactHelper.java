@@ -1,6 +1,5 @@
 package ru.stqa.pft.addressbook.appmanager;
 
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -22,7 +21,7 @@ public class ContactHelper extends BaseHelper {
   }
 
   public void selectContact() {
-    click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[1]/input"));
+    click(By.name("selected[]"));
   }
 
   public void deleteSelectedContact() {
@@ -63,7 +62,22 @@ public class ContactHelper extends BaseHelper {
   }
 
   public void initContactModification() {
-    click(By.xpath("//table[@id='maintable']/tbody/tr[4]/td[8]/a/img"));
+    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
 
+  }
+
+  public void initContactCreation() {
+    click(By.xpath("//div[@id='nav']//a[.='add new']"));
+  }
+
+
+  public void createContact(ContactData contact, boolean c) {
+    initContactCreation();
+    fillContactForm(contact, c);
+    supmitContactCreation();
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected[]"));
   }
 }
