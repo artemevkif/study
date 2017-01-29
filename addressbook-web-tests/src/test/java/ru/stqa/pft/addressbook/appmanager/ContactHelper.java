@@ -1,10 +1,14 @@
 package ru.stqa.pft.addressbook.appmanager;
 
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by xxartema on 09.01.2017.
@@ -17,13 +21,12 @@ public class ContactHelper extends BaseHelper {
   }
 
   public void supmitContactCreation() {
-    click(By.xpath("//div[@id='content']/form/input[21]"));
+    click(By.name("submit"));
   }
 
-  public void selectContact() {
-    click(By.name("selected[]"));
+  public void selectContact(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
   }
-
   public void deleteSelectedContact() {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
   }
@@ -61,9 +64,8 @@ public class ContactHelper extends BaseHelper {
     click(By.xpath("//div[@id='content']/form[1]/input[22]"));
   }
 
-  public void initContactModification() {
-    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
-
+  public void initContactModification(Integer num) {
+    wd.findElements(By.cssSelector("img[alt=\"Edit\"]")).get(num).click();
   }
 
   public void initContactCreation() {
@@ -79,5 +81,22 @@ public class ContactHelper extends BaseHelper {
 
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
+  }
+
+  public int getContactCount() {
+    return wd.findElements(By.name("selected[]")).size();
+  }
+
+  public List<ContactData> getContactList() {
+    List<ContactData> contacts = new ArrayList<ContactData>();
+    List<WebElement> elements = wd.findElements(By.xpath("//tr[@name = 'entry']/td[3]"));
+    for (WebElement element : elements) {
+      String name = element.getText();
+      String lastname = wd.findElement(By.xpath("//tr[@name = 'entry']/td[2]")).getText();
+      int id = Integer.parseInt(wd.findElement(By.cssSelector(".center input")).getAttribute("id"));
+      ContactData contact = new ContactData(id, name, null, null, lastname, null, null, null,null, null, null,null, null, null,null, null, null,null);
+      contacts.add(contact);
+    }
+    return contacts;
   }
 }
