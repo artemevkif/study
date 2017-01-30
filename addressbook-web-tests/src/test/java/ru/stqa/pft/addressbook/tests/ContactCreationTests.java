@@ -12,6 +12,7 @@ public class ContactCreationTests extends TestBase {
 
   @Test
   public void testContactCreation() {
+    app.getNavigationHelper().gotoContactPage();
     List<ContactData> before = app.getContactHelper().getContactList();
     ContactData contact = new ContactData("testname", "test1","testmname", "testname", null, "C:\\1.png", "testtitle", "testcompany", "testadress", "testhome", "testmobile", "testwork", "testfax", "testmail", "testmail2", "testmail3", "testhompage");
     app.getContactHelper().createContact(contact);
