@@ -18,8 +18,8 @@ public class NavigationHelper extends BaseHelper {
             && isElementPresent(By.name("new"))) {
       return;
     }
-      click(By.linkText("groups"));
-    }
+    click(By.linkText("groups"));
+  }
 
   public void returnToMainPage() {
     if (isElementPresent(By.id("maintable"))) {

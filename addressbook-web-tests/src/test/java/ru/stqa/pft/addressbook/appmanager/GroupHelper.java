@@ -76,6 +76,14 @@ public class GroupHelper extends BaseHelper {
       groups.add(group);
     }
     return groups;
+  }
 
+
+  public void modifyGroup(int index, GroupData group) {
+    selectGroup(index);
+    initGroupModification();
+    fillGroupForm(group);
+    supmitGroupModification();
+    returnToGroupPage();
   }
 }
