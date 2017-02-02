@@ -13,6 +13,9 @@ public class ContactCreationTests extends TestBase {
     app.goTo().contactPage();
     Contacts before = app.contact().all();
     ContactData contact = new ContactData()
+            .withHome("23123")
+            .withMobile("23123")
+            .withWork("23123")
             .withAddress("testadress")
             .withCompany("testcompany")
             .withFirstname("testname")
@@ -24,8 +27,8 @@ public class ContactCreationTests extends TestBase {
             .withGroup("test1");
     app.contact().create(contact);
     app.goTo().MainPage();
+    assertThat(app.contact().count(), equalTo(before.size()+ 1));
     Contacts after = app.contact().all();
-    assertThat(after.size(), equalTo(before.size()));
     assertThat(after, equalTo(before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }
 }
