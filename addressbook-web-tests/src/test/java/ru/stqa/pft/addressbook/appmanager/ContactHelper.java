@@ -52,11 +52,11 @@ public class ContactHelper extends BaseHelper {
     type(By.name("email3"), contactData.getEmail3());
     type(By.name("homepage"), contactData.getHomepage());
 
-    if (createon) {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-    } else {
-      Assert.assertFalse(isElementPresent(By.name("new_group")));
-    }
+    //if (createon) {
+    //  new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+    //} else {
+    //  Assert.assertFalse(isElementPresent(By.name("new_group")));
+    //}
   }
 
   public void alertaccept() {
@@ -94,6 +94,17 @@ public class ContactHelper extends BaseHelper {
     WebElement row = checkbox.findElement(By.xpath("./../.."));
     List<WebElement> cells = row.findElements(By.tagName("td"));
     cells.get(7).findElement(By.tagName("a")).click();
+  }
+
+  public void initContactInfo(int id) {
+    wd.findElement(By.xpath("//tr[@name = 'entry']/td[7]/a[@href = 'view.php?id=" + id + "']")).click();
+  }
+
+  public ContactData infoFromInfoForm(ContactData contact) {
+    initContactInfo(contact.getId());
+    String allInfo = wd.findElement(By.xpath("//div[@id='content']")).getText();
+    wd.navigate().back();
+    return new ContactData().withAllInfo(allInfo);
   }
 
   public void initContactCreation() {
