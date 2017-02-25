@@ -24,8 +24,7 @@ public class ContactDeletionTests extends TestBase {
               .withEmail("testmail")
               .withEmail2("testmail")
               .withEmail3("testmail")
-              .withFax("testfax")
-              .withGroup("test1"));
+              .withFax("testfax"));
     }
   }
 
