@@ -203,7 +203,8 @@ public class ContactData {
     return homepage;
   }
 
-    @Override
+
+  @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -328,4 +329,8 @@ public class ContactData {
     return this;
   }
 
+  public ContactData inGroup(GroupData group) {
+    groups.add(group);
+    return this;
+  }
 }

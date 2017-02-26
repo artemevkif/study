@@ -52,11 +52,12 @@ public class ContactHelper extends BaseHelper {
     type(By.name("email3"), contactData.getEmail3());
     type(By.name("homepage"), contactData.getHomepage());
 
-    //if (createon) {
-    //  new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-    //} else {
-    //  Assert.assertFalse(isElementPresent(By.name("new_group")));
-    //}
+    if (createon) {
+      if (contactData.getGroups().size() > 0) {
+        Assert.assertTrue(contactData.getGroups().size() == 1);
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
+      }
+    }
   }
 
   public void alertaccept() {
@@ -70,6 +71,23 @@ public class ContactHelper extends BaseHelper {
   public void initContactModification(int id) {
     wd.findElement(By.xpath("//tr[@name = 'entry']/td[8]/a[@href = 'edit.php?id=" + id + "']")).click();
   }
+
+  public void selectGroup(int id) {
+    wd.findElement(By.xpath("//select[@name = 'to_group']/option[@value='" + id + "']")).click();
+  }
+  public void addContactInGroup(int id) {
+    wd.findElement(By.cssSelector(String.format("input[value='%s']", id))).click();
+    wd.findElement(By.name("add")).click();
+  }
+
+  public void deleteContactGroup(int id) {
+    wd.findElement(By.cssSelector(String.format("input[value='%s']", id))).click();
+    wd.findElement(By.name("remove")).click();
+  }
+
+  public void selectGroupFilter(int id) {
+    wd.findElement(By.xpath("//select[@name = 'group']/option[@value='" + id + "']")).click();
+   }
 
   public ContactData infoFromEditForm(ContactData contact) {
     initContactModificationById(contact.getId());
@@ -114,7 +132,7 @@ public class ContactHelper extends BaseHelper {
 
   public void create(ContactData contact) {
     initContactCreation();
-    fillContactForm(contact, true);
+    fillContactForm(contact, false);
     supmitContactCreation();
     contactCache = null;
   }
