@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -25,6 +26,7 @@ public class ApplicationManager {
     private JamesHelper jamesHelper;
     private SoapHelper soapHelper;
     private NavigationHelper navigationHelper;
+    private BugifyHelper bugifyHelper;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -102,8 +104,15 @@ public class ApplicationManager {
 
     public NavigationHelper navigate() {
         if (navigationHelper == null) {
-            navigationHelper =  new NavigationHelper(this);
+            navigationHelper = new NavigationHelper(this);
         }
         return navigationHelper;
+    }
+
+    public BugifyHelper getBugifyHelper() {
+        if (bugifyHelper == null) {
+            bugifyHelper = new BugifyHelper(this);
+        }
+        return bugifyHelper;
     }
 }
