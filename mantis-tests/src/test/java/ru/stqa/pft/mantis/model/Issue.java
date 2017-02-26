@@ -10,6 +10,16 @@ public class Issue {
     private String summary;
     private String description;
     private Project project;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public Issue withName(String name) {
+        this.name = name;
+        return this;
+    }
 
     public int getId() {
         return id;
