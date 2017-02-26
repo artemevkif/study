@@ -18,11 +18,9 @@ import java.util.stream.Collectors;
 public class JamesHelper {
 
     private ApplicationManager app;
-
     private TelnetClient telnet;
     private InputStream in;
     private PrintStream out;
-
     private Session mailSession;
     private Store store;
     private String mailserver;
@@ -64,27 +62,21 @@ public class JamesHelper {
         try {
             telnet.connect(mailserver, port);
             in = telnet.getInputStream();
-            out = new PrintStream( telnet.getOutputStream() );
+            out = new PrintStream(telnet.getOutputStream());
 
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
-        // Don't know why it doesn't allow login at the first attempt
         readUntil("Login id:");
         write("");
         readUntil("Password:");
         write("");
-
-        // Second login attempt, must be successful
         readUntil("Login id:");
         write(login);
         readUntil("Password:");
         write(password);
-
-        // Read welcome message
-        readUntil("Welcome "+login+". HELP for a list of commands");
+        readUntil("Welcome " + login + ". HELP for a list of commands");
     }
 
     private String readUntil(String pattern) {
@@ -177,5 +169,4 @@ public class JamesHelper {
             return null;
         }
     }
-
 }
